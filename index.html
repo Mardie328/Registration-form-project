@@ -17,24 +17,76 @@
     <main>
         <div id="page-content">
             <h1>Learn to code by <br> watching others</h1><br>
-            <p>See how experienced developers solve problems in real-time. Watching scripted tutorials is great, but understanding how developers think in invaluable.</p>
+            <p>See how experienced developers solve problems in real-time. Watching scripted tutorials is great, but understanding how developers think is invaluable.</p>
         </div>
 
         <div id="page-form">
             <button id="top-button"><strong>Try it free 7 days</strong> <span >then <span id="top"></span>$20/mo. thereafter</span></span></button><br><br>
-            <form>
+            <form id="myform" onsubmit="return validate()">
                 <label for="firstName"></label>
-                <input type="text" name="firstName" placeholder="First Name" required valid><br><br>
+                <input id ="firstName" type="text" name="firstName" placeholder="First Name"><br>
+                <span id="message1" id="firstName"></span><br>
+
                 <label for="lastName"></label>
-                <input type="text" name="lastName" placeholder="Last Name" required><br><br>
+                <input id ="lastName" type="text" name="lastName" placeholder="Last Name"><br>
+                <span id="message2"></span><br>
+
                 <label for="emailAddress"></label>
-                <input type="email" name="emailAddress" placeholder="Email Address" required><br><br>
-                <label for="password"></label>
-                <input type="password" name="password" placeholder="Password" required ><br><br>
+                <input id ="emailAddress" type="email" name="emailAddress" placeholder="Email Address"><br>
+                <span id="email-placeholder">email@example/com</span>
+                <span id="message3"></span><br>
+
+                <label id ="password" for="password"></label>
+                <input id ="password" type="password" name="password" placeholder="Password" ><br>
+                <span id="message4"></span><br>
+
                 <button type="submit" id="submit-button">CLAIM YOUR FREE TRIAL</button>
                 <p id="form-footer">By clicking the button, you are agreeing to our <a href="#"><strong>Terms and Services</strong></a></p>
             </form>
         </div>
     </main>
 </body>
+
+<script>
+    function validate() {
+        var firstname = document.getElementById('firstName').value;
+        var lastname = document.getElementById('lastName').value;
+        var email = document.getElementById('emailAddress').value;
+        var password = document.getElementById('password').value;
+        
+        if (firstname == "") {
+            document.getElementById("firstName").style.borderColor = "hsl(0, 100%, 74%)";
+            document.getElementById("firstName").style.backgroundImage.innerHTML = "url(./images/icon-error.svg);";
+            document.getElementById('message1').innerHTML
+                = 'First Name cannot be empty';
+        }
+        if (lastname == "") {
+            document.getElementById("lastName").style.borderColor = "hsl(0, 100%, 74%)";
+            document.getElementById('message2').innerHTML
+                = 'Last Name cannot be empty';
+        }
+        if (email == "") {
+            document.getElementById("emailAddress").style.borderColor = "hsl(0, 100%, 74%)";
+            document.getElementById('message3').innerHTML
+                = 'Looks like this is not an email';
+            return false;
+        }
+        if (password == "") {
+            document.getElementById("password").style.borderColor = "hsl(0, 100%, 74%)";
+            document.getElementById('message4').innerHTML
+                = 'Password cannot be empty';
+            return false;
+        }
+        
+        
+        document.getElementById('message1').innerHTML = "";
+        document.getElementById('message2').innerHTML = "";
+        document.getElementById('message3').innerHTML = "";
+        document.getElementById('message4').innerHTML = "";
+        //return true;
+    }
+    // document.getElementById('message3').innerHTML = "";
+        // return true;
+
+</script>
 </html>
